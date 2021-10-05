@@ -7,7 +7,7 @@
 Chess is based on FEN - is a standard noatation to describe position on a chess game 
 
 ## Plan Of Work
-![Plan Of Work](https://cloud.mail.ru/public/C8vF/WhbJZ14oc)
+![Plan Of Work](https://i.imgur.com/ZYLaLQT.png)
 
 
 Base of chess:
@@ -20,7 +20,8 @@ Base of chess:
 	6. Figure
 	7. Coordinates
 	8. Color
-![ChessClassLibrary](https://cloud.mail.ru/public/7W1P/N9UhSFMBr)
+
+![ChessClassLibrrary](https://i.imgur.com/d2xDnVw.png)
 
 2. Chess Game
 	1. Game

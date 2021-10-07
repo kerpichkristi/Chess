@@ -21,7 +21,7 @@ Base of chess:
 	7. Coordinates
 	8. Color
 
-![ChessClassLibrrary](https://i.imgur.com/d2xDnVw.png)
+![ChessClassLibrrary](https://imgur.com/C3KmatT)
 
 2. Chess Game
 	1. Game

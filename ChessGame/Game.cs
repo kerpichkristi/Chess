@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ChessClassLibrary;
 
 namespace ChessGame
@@ -7,14 +8,24 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
+            Random random = new Random();
             Chess chess = new Chess();
+            List<string> list;
             while (true) {
 
-                
+                Console.Clear();
+                list = chess.GetAllMoves();
                 Console.WriteLine(chess.fen);
-                Console.WriteLine(ChessToAscii(chess));
+                Print(ChessToAscii(chess));
+                Console.WriteLine(chess.IsCheck() ? "CHECK" : "-");
+                foreach (string moves in list)
+                    Console.Write(moves + "\t");
+                Console.WriteLine();
+                Console.Write("> "); ;
                 string move = Console.ReadLine();
-                if (move == "") break;
+
+                if (move == "q") break;
+                if (move == "") move = list[random.Next(list.Count)];
                 chess = chess.Move(move); 
             }
         }
@@ -32,7 +43,21 @@ namespace ChessGame
             text += "  +-----------------+\n";
             text += "    a b c d e f g h\n";
             return text;
-        
         }
+
+        static void Print(string text)
+        {
+            ConsoleColor oldForeColor = Console.ForegroundColor;
+            foreach (char x in text) {
+
+                if (x >= 'a' && x <= 'z')
+                    Console.ForegroundColor = ConsoleColor.Red;
+                else if (x >= 'A' && x <= 'Z')
+                    Console.ForegroundColor = ConsoleColor.White;
+                else Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write(x);
+            }
+            Console.ForegroundColor = oldForeColor;
+        } 
     }
 }

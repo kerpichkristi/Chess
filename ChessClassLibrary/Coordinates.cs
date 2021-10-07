@@ -35,5 +35,22 @@ namespace ChessClassLibrary
                     y >= 0 && y < 8;
         
         }
+        public string Name { get { return((char)('a' + x)).ToString() + (y + 1).ToString(); } } 
+        public static bool operator == (Coordinates a, Coordinates b)
+        {
+            return a.x == b.x && a.y == b.y;
+        }
+        public static bool operator !=(Coordinates a, Coordinates b) {
+
+            return a.x != b.x || a.x != b.y;
+            //return !(a == b);
+        }
+
+        public static IEnumerable<Coordinates> YieldCoordinates()
+        {
+            for (int y = 0; y < 8; y++)
+                for (int x = 0; x < 8; x++)
+                    yield return new Coordinates(x, y);
+        }
     }
 }

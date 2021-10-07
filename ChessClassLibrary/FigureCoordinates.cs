@@ -15,8 +15,6 @@ namespace ChessClassLibrary
 
             this.figure = figure;
             this.coordinates = coordinates;
-        
-        
         }
     }
 }

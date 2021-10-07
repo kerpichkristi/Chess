@@ -1,6 +1,6 @@
 # Chess Online 
 
-## Pre-alfa vwe 0.2.0
+## Pre-alfa ver 0.2.0
 
 - Created in 3dsMax board and figures
 - Added movement verification 

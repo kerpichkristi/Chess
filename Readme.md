@@ -6,7 +6,7 @@
 - Created in 3dsMax board and figures
 - Added movement verification 
 - Imported project in Unity3D
-- Added Rules.cs where the movement of figures on the the board is realized
+- Added Rules.cs where the movement of figures on the board is realized
 
 ![Unity 3d import](https://i.imgur.com/lTcKrko.png)
 

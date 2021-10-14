@@ -52,7 +52,7 @@ class DragAndDrop
                 if (IsMouseButtonPressed())
                     PickUp();
                 break;
-            case State.drag:
+       /*     case State.drag:
                 if (IsMouseButtonPressed())
                     Drag();
                 else
@@ -60,7 +60,7 @@ class DragAndDrop
                     Drop();
                     return true;
                 }
-                break;
+                break;*/
         }
         return false;
     }

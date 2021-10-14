@@ -1,7 +1,8 @@
 # Chess Online 
 
-## Pre-alfa vwe 0.2.0
+## Pre-alfa ver 0.2.0
 
+- Added second lines of letters and numbers
 - Created in 3dsMax board and figures
 - Added movement verification 
 - Imported project in Unity3D
@@ -34,21 +35,3 @@ Chess is based on FEN - is a standard noatation to describe position on a chess 
 	1. Game
 
 ![ChessClassLibrrary](https://i.imgur.com/C3KmatT.png)
-
-
-Base of chess:
-1. ChessClassLibrrary
-	1. Chess
-	2. Moves
-	3. Board
-	4. FigureMoving
-	5. FigureCoordinates
-	6. Figure
-	7. Coordinates
-	8. Color
-
-![ChessClassLibrrary](https://imgur.com/C3KmatT.png)
-
-2. Chess Game
-	1. Game
-

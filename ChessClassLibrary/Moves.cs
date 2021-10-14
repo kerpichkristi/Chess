@@ -43,7 +43,7 @@ namespace ChessClassLibrary
                     return CanKingMove();
                 case Figure.whiteQueen:
                 case Figure.blackQueen:
-                    return CanQueenMove();
+                    //return CanQueenMove();
                 case Figure.whiteRook:
                 case Figure.blackRook:
                     return (fm.SignX == 0 || fm.SignY == 0) && CanStraightMove();
@@ -60,10 +60,10 @@ namespace ChessClassLibrary
             }
         }
 
-        private bool CanQueenMove()
+        /*private bool CanQueenMove()
         {
             
-        }
+        }*/
 
         private bool CanKhightMove()
         {

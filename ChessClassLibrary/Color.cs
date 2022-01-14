@@ -12,7 +12,7 @@ namespace ChessClassLibrary
         white,
         black
     }
-    static class ColorMethod
+    static class ColorMethods
     {
         public static Color FlipColor(this Color color)
         {

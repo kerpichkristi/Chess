@@ -8,13 +8,14 @@ namespace ChessClassLibrary
 {
     class FigureCoordinates
     {
-        public Figure figure { get; private set;}
-        public Coordinates coordinates { get; private set;}
+        public Figure figure { get; private set; }
+        public Coordinate coordinate { get; private set; }
 
-        public FigureCoordinates(Figure figure, Coordinates coordinates) {
-
+        public FigureCoordinates(Figure figure, Coordinate coordinate)
+        {
             this.figure = figure;
-            this.coordinates = coordinates;
+            this.coordinate = coordinate;
         }
+
     }
 }

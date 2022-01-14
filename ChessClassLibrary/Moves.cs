@@ -15,27 +15,29 @@ namespace ChessClassLibrary
         {
             this.board = board;
         }
-        public bool CanMove(FigureMoving fm) {
+        public bool CanMove(FigureMoving fm)
+        {
             this.fm = fm;
-            return
-                CanMoveFrom() &&
-                CanMoveTo()&& 
-                CanFigureMove();
+            return CanMoveFrom() &&
+                CanMoveTo() &&
+                CanMoveFigure();
         }
-        bool CanMoveFrom() {
 
+       
+
+        private bool CanMoveFrom() {
             return fm.from.OnBoard() &&
-                  board.GetFigureAt(new Coordinates(fm.from.x, fm.from.y)) == fm.figure &&
-                  fm.figure.GetColor() == board.moveColor;
+                    fm.figure.GetColor() == board.moveColor;
+        
         }
-
-        bool CanMoveTo() {
-
+        private bool CanMoveTo()
+        {
             return fm.to.OnBoard() &&
                 fm.from != fm.to &&
                 board.GetFigureAt(fm.to).GetColor() != board.moveColor;
         }
-        bool CanFigureMove() {
+        private bool CanMoveFigure()
+        {
             switch (fm.figure)
             {
                 case Figure.whiteKing:
@@ -43,13 +45,13 @@ namespace ChessClassLibrary
                     return CanKingMove();
                 case Figure.whiteQueen:
                 case Figure.blackQueen:
-                    //return CanQueenMove();
+                    return CanStraightMove();
                 case Figure.whiteRook:
                 case Figure.blackRook:
                     return (fm.SignX == 0 || fm.SignY == 0) && CanStraightMove();
                 case Figure.whiteBishop:
                 case Figure.blackBishop:
-                    return (fm.SignX != 0 || fm.SignY != 0) && CanStraightMove();
+                    return (fm.SignX != 0 && fm.SignY != 0) && CanStraightMove();
                 case Figure.whiteKnight:
                 case Figure.blackKnight:
                     return CanKhightMove();
@@ -60,38 +62,36 @@ namespace ChessClassLibrary
             }
         }
 
-        /*private bool CanQueenMove()
-        {
-            
-        }*/
-
-        private bool CanKhightMove()
+        private bool CanKingMove()
         {
             if (fm.AbsDeltaX <= 1 && fm.AbsDeltaY <= 1)
                 return true;
             return false;
         }
-        private bool CanKingMove() {
+        private bool CanKhightMove()
+        {
 
             if (fm.AbsDeltaX == 1 && fm.AbsDeltaY == 2) return true;
             if (fm.AbsDeltaX == 2 && fm.AbsDeltaY == 1) return true;
             return false;
         }
 
-        private bool CanStraightMove() {
-            Coordinates at = fm.from;
+        private bool CanStraightMove()
+        {
+            Coordinate at = fm.from;
             do
             {
-                at = new Coordinates(at.x + fm.SignX, at.y + fm.SignY);
+                at = new Coordinate(at.x + fm.SignX, at.y + fm.SignY);
                 if (at == fm.to)
                     return true;
             } while (at.OnBoard() &&
                     board.GetFigureAt(at) == Figure.none);
             return false;
-        
-        
+
+
         }
-        private bool CanPawnMove(){
+        private bool CanPawnMove()
+        {
             if (fm.from.y < 1 || fm.from.y > 6)
                 return false;
             int stepY = fm.figure.GetColor() == Color.white ? 1 : -1;
@@ -101,33 +101,36 @@ namespace ChessClassLibrary
                 CanPawnEat(stepY);
         }
 
-        private bool CanPawnEat(int stepY)
-        {
-            if (board.GetFigureAt(fm.to) == Figure.none)
-                if (fm.DeltaX == 0)
-                    if (fm.DeltaY == stepY)
-                        return true;
-            return false;
-        }
+     
 
         private bool CanPawnGo(int stepY)
         {
             if (board.GetFigureAt(fm.to) == Figure.none)
                 if (fm.DeltaX == 0)
-                    if (fm.DeltaY == 2* stepY)
-                        if(fm.from.y == 1 || fm.from.y == 6)
-                            if (board.GetFigureAt(new Coordinates(fm.from.x, fm.from.y + stepY)) == Figure.none)
-                                return true;
+                    if (fm.DeltaY == stepY)
+                        return true;
             return false;
         }
 
         private bool CanPawnJump(int stepY)
         {
-            if (board.GetFigureAt(fm.to) != Figure.none)
-                if (fm.DeltaX == 1)
-                    if (fm.DeltaY == stepY)
-                        return true;
+            
+            if (board.GetFigureAt(fm.to) == Figure.none)
+                if (fm.DeltaX == 0)
+                    if (fm.DeltaY == 2 * stepY)
+                        if (fm.from.y == 1 || fm.from.y == 6)
+                            if (board.GetFigureAt(new Coordinate(fm.from.x, fm.from.y + stepY)) == Figure.none)
+                                return true;
+            return false;
+        }
+        private bool CanPawnEat(int stepY)
+        {
+            if(board.GetFigureAt(fm.to) != Figure.none)
+                if (fm.AbsDeltaX == 1)
+                if (fm.DeltaY == stepY)
+                    return true;
             return false;
         }
     }
+    
 }

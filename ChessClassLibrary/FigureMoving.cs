@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace ChessClassLibrary
 {
-    class FigureMoving
-    {
-        public Figure figure { get; private set;}
-        public Coordinates from  { get; private set; }
-        public Coordinates to { get; private set; }
-        public Figure promotion { get; set; }
+    class FigureMoving { 
+    
+    public Figure figure { get; private set; }
+        public Coordinate from { get; private set; }
+        public Coordinate to { get; private set; }
+        public Figure promotion { get; private set; }
 
-        public FigureMoving(FigureCoordinates fc, Coordinates to,Figure promotion = Figure.none) {
-
+        public FigureMoving(FigureCoordinates fc, Coordinate to, Figure promotion = Figure.none)
+        {
             this.figure = fc.figure;
-            this.from = fc.coordinates;
+            this.from = fc.coordinate;
             this.to = to;
             this.promotion = promotion;
         
         }
-        public FigureMoving(string move) {
-
+        public FigureMoving(string move)
+        {
             this.figure = (Figure)move[0];
-            this.from = new Coordinates(move.Substring(1, 2));
-            this.to = new Coordinates(move.Substring(3, 2));
+            this.from = new Coordinate(move.Substring(1, 2));
+            this.to = new Coordinate(move.Substring(3, 2));
             this.promotion = (move.Length == 6) ? (Figure)move[5] : Figure.none;
         }
 
@@ -45,5 +45,6 @@ namespace ChessClassLibrary
                 text += (char)promotion;
             return text;
         }
+
     }
 }

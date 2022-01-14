@@ -13,20 +13,26 @@ namespace ChessClassLibrary
         Board board;
         Moves moves;
         List<FigureMoving> allMoves;
-        
 
-        public Chess(string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") { 
+        public Chess(string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+        {
             this.fen = fen;
             board = new Board(fen);
             moves = new Moves(board);
+         
         }
-        Chess(Board board) {
+        Chess(Board board)
+        {
+
             this.board = board;
             this.fen = board.fen;
             moves = new Moves(board);
 
         }
-        public Chess Move(string move) {
+
+
+        public Chess Move(string move)
+        {
 
             FigureMoving fm = new FigureMoving(move);
             if (!moves.CanMove(fm))
@@ -35,29 +41,32 @@ namespace ChessClassLibrary
                 return this;
             Board nextBoard = board.Move(fm);
             Chess nextChess = new Chess(nextBoard);
+           
             return nextChess;
+
+        }
+        public char GetFigureAt(int x, int y)
+        {
+            Coordinate coordinate = new Coordinate(x, y);
+            Figure f = board.GetFigureAt(coordinate);
+            return f == Figure.none ? '.' : (char)f;
         
         }
 
-        public char GetFigureAt(int x, int y) {
-            Coordinates coordinates = new Coordinates(x, y);
-            Figure f = board.GetFigureAt(coordinates);
-            return f == Figure.none ? '.' : (char)f;
-        }
+        private void FindAllMoves() {
 
-        public void FindAllMoves()
-        {
             allMoves = new List<FigureMoving>();
             foreach (FigureCoordinates fc in board.YieldFigures())
-                foreach (Coordinates to in Coordinates.YieldCoordinates())
+                foreach (Coordinate to in Coordinate.YieldCoordinate())
                 {
                     FigureMoving fm = new FigureMoving(fc, to);
                     if (moves.CanMove(fm))
-                        if(!board.IsCheckAfterMove(fm))
+                        if (!board.IsCheckAfterMove(fm))
                             allMoves.Add(fm);
                 }
         }
         public List<string> GetAllMoves() {
+
             FindAllMoves();
             List<string> list = new List<string>();
             foreach (FigureMoving fm in allMoves)
@@ -65,7 +74,8 @@ namespace ChessClassLibrary
             return list;
         }
 
-        public bool IsCheck() {
+        public bool IsCheck()
+        {
             return board.IsCheck();
         }
 
